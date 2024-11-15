@@ -5,25 +5,49 @@ import languages from './db/languages'
 
 
 function App() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(null)
 
   function handleClick(e) {
 
+    const newActive = Number(e.target.getAttribute("data-index"))
+    console.log(newActive);
+
+    setActive(newActive)
   }
 
+  // if (active == null) {
+  //   const cardSectionEl = document.querySelector(".cardSection")
+  //   cardSectionEl.innerHTML = `<h3>Nessun linguaggio selezionato</h3>`
+
+  // }
 
   return (
     <>
       <div className="container">
         <h1>Learn Web development</h1>
-        <section>
+
+        <section className='buttonsSection'>
           <ul>
-            {languages.map(language => <li key={language.id}>{language.title}</li>)}
+            {languages.map((language, index) => (
+              <li >
+                <button onClick={handleClick} data-index={index}
+                  className={active === index ? "button active" : "button not_active"}>{language.title}</button>
+              </li>
+            ))}
           </ul>
-          <div className="card">
-            <h3>{languages[0].title}</h3>
-            <p>{languages[0].description}</p>
-          </div>
+        </section>
+
+        <section className={active == null ? 'card default' : "card hidden"}>
+          <h3>Nessun linguaggio selezionato</h3>
+        </section>
+
+        <section className='cardSection'>
+          {languages.map((language, index) => (
+            <div className={active === index ? "card active" : "card hidden"} id='cardId'>
+              <h3>{language.title}</h3>
+              <p>{language.description}</p>
+            </div>
+          ))}
         </section>
       </div>
     </>

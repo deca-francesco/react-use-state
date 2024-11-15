@@ -23,10 +23,24 @@ body {
 
     li {
       margin-right: 1rem;
-      background-color: dodgerblue;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.3rem;
-      color: white;
+
+      button {
+        background-color: dodgerblue;
+        padding: 0.5rem 0.75rem;
+        border: none;
+        border-radius: 0.3rem;
+        color: white;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.active {
+          background-color: orange;
+          color: black;
+        }
+
+      }
     }
 
   }
@@ -38,6 +52,10 @@ body {
     border: 1px solid lightgrey;
     border-radius: 0.3rem;
 
+    &.hidden {
+      display: none;
+    }
+
     h3 {
       margin-bottom: 0.5rem;
     }
@@ -46,9 +64,8 @@ body {
       font-size: 0.9rem;
       line-height: 1.5rem;
     }
-
-
   }
+
 
 
 
